@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CryptoReal — Token Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/css/reset.css" />
+  <link rel="stylesheet" href="src/css/tokens.css" />
+  <link rel="stylesheet" href="src/css/layout.css" />
+  <link rel="stylesheet" href="src/css/components.css" />
+  <link rel="stylesheet" href="src/css/animations.css" />
+</head>
+<body>
+
+  <canvas id="canvas-bg" aria-hidden="true"></canvas>
+  <canvas id="canvas-fg" aria-hidden="true"></canvas>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header fade-up">
+      <div class="logo">Crypto<em>Real</em></div>
+      <div class="network-badge" id="network-badge">● Disconnected</div>
+    </header>
+
+    <!-- Hero / connect screen -->
+    <section class="hero" id="connect-section">
+      <div class="hero__eyebrow fade-up">ERC-20 · Ethereum Testnet</div>
+      <h1 class="hero__title fade-up-1">Your token.<br><span>Your rules.</span></h1>
+      <p class="hero__sub fade-up-2">ethers.js · OpenZeppelin · Sepolia</p>
+      <button class="btn-connect fade-up-3" id="btn-connect">
+        <svg class="btn-connect__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+          <circle cx="16" cy="12" r="1" fill="currentColor"/>
+        </svg>
+        Connect MetaMask
+      </button>
+      <p class="hero__hint fade-up-4">MetaMask browser extension required</p>
+    </section>
+
+    <!-- Dashboard -->
+    <main class="dashboard" id="dashboard" aria-live="polite">
+
+      <!-- Row 1: wallet + balance -->
+      <div class="grid-2">
+        <div class="card wallet-card fade-up">
+          <div class="wallet-row">
+            <div class="avatar" aria-hidden="true">🦊</div>
+            <div class="wallet-info">
+              <p class="label">Connected wallet</p>
+              <p class="wallet-addr" id="wallet-addr">—</p>
+            </div>
+            <button class="btn-disconnect" id="btn-disconnect">Disconnect</button>
+          </div>
+        </div>
+
+        <div class="card balance-card fade-up-1">
+          <p class="label">CRT Balance</p>
+          <div class="balance-row">
+            <div class="balance-amount">
+              <span class="balance-num" id="balance-num">0</span>
+              <span class="balance-sym">CRT</span>
+            </div>
+            <div class="balance-eth" id="balance-eth">— ETH</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: mint + transfer + token info -->
+      <div class="grid-3">
+
+        <!-- Mint -->
+        <div class="card mint-card fade-up-2">
+          <div class="mint-status" id="mint-status">
+            <span class="dot"></span>Available to claim
+          </div>
+          <div class="mint-amount">1,000</div>
+          <p class="mint-desc">CRT · one time per wallet</p>
+          <button class="btn-mint" id="btn-mint">Mint tokens →</button>
+        </div>
+
+        <!-- Transfer -->
+        <div class="card fade-up-3">
+          <p class="section-title">Transfer</p>
+          <div class="form-group">
+            <label class="form-label" for="to-addr">Recipient address</label>
+            <input class="input" id="to-addr" type="text" placeholder="0x..." autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="amount">Amount (CRT)</label>
+            <input class="input" id="amount" type="number" min="0" step="any" placeholder="0.00" />
+          </div>
+          <button class="btn-transfer" id="btn-transfer">Send →</button>
+        </div>
+
+        <!-- Token info -->
+        <div class="card fade-up-4">
+          <p class="section-title">Token info</p>
+          <div class="info-table">
+            <div class="info-row">
+              <span class="info-key">Name</span>
+              <span class="info-val" id="i-name">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Symbol</span>
+              <span class="info-val info-val--accent" id="i-symbol">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Decimals</span>
+              <span class="info-val" id="i-decimals">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Total supply</span>
+              <span class="info-val" id="i-supply">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Contract</span>
+              <span class="info-val info-val--small" id="i-contract">—</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Row 3: history -->
+      <div class="card fade-up">
+        <p class="section-title">Session history</p>
+        <div id="tx-list">
+          <p class="empty-state">No activity yet this session</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="src/js/coins/coins-bg.js"></script>
+  <script src="src/js/coins/coins-fg.js"></script>
+  <script src="src/js/config.js"></script>
+  <script src="src/js/contract.js"></script>
+  <script src="src/js/ui.js"></script>
+  <script src="src/js/app.js"></script>
+
+</body>
+</html>
