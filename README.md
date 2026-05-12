@@ -63,8 +63,6 @@ cryptoreal/
 │           ├── coins-bg.js     # Procedural 3-D coins — background layer (large, slow)
 │           └── coins-fg.js     # Procedural 3-D coins — foreground layer (small, fast)
 │
-├── vercel.json                 # Vercel build config
-├── vercel-build.sh             # Injects env vars into config.js at deploy time
 ├── .gitignore
 └── README.md
 ```
