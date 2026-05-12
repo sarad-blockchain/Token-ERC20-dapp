@@ -1,4 +1,4 @@
-# CryptoReal — ERC-20 Token Dashboard
+# CryptoReal — Token ERC-20  dApp
 
 A custom ERC-20 token deployed on the Ethereum Sepolia testnet, with a browser frontend that connects to it via MetaMask and ethers.js.
 
