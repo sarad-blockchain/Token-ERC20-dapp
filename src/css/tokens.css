@@ -1,0 +1,47 @@
+/* css/tokens.css */
+:root {
+  /* Colors */
+  --bg:           #03050a;
+  --bg-2:         #080c14;
+  --surface:      rgba(255, 255, 255, 0.035);
+  --surface-hi:   rgba(255, 255, 255, 0.065);
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-hi:    rgba(99, 220, 180, 0.35);
+
+  --accent:       #63dcb4;
+  --accent-rgb:   99, 220, 180;
+  --accent-dim:   rgba(99, 220, 180, 0.12);
+  --gold:         #f0c060;
+  --gold-rgb:     240, 192, 96;
+  --danger:       #ff6b6b;
+
+  --text:         #e2edf4;
+  --muted:        rgba(226, 237, 244, 0.38);
+  --muted-hi:     rgba(226, 237, 244, 0.60);
+
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+  --font-ui:      'DM Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px;
+  --s12: 48px; --s16: 64px; --s20: 80px;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-full: 999px;
+
+  /* Shadows */
+  --glow:    0 0 40px rgba(var(--accent-rgb), 0.18);
+  --glow-sm: 0 0 20px rgba(var(--accent-rgb), 0.14);
+  --glow-gold: 0 0 28px rgba(var(--gold-rgb), 0.22);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --t: 0.28s var(--ease);
+}
