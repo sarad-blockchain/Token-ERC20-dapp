@@ -4,7 +4,7 @@ A custom ERC-20 token deployed on the Ethereum Sepolia testnet, with a browser f
 
 Token balance, transfer history, and on-chain metadata are read directly from the contract. Every transfer is a real blockchain transaction signed through MetaMask and visible on Sepolia Etherscan.
 
-[Live demo](#) · [Contract on Etherscan](#)
+[Live demo](https://token-erc-20-dapp.vercel.app/) · [Contract on Etherscan](#)
 
 ---
 
